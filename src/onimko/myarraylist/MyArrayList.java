@@ -4,6 +4,10 @@ import onimko.MyList;
 
 import java.util.Collection;
 
+/**
+ * This my own ArrayList
+ * @param <E> - tip of data.
+ */
 public class MyArrayList<E> implements MyList{
   private int size;
   private final static int startSize = 10;

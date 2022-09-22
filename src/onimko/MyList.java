@@ -2,6 +2,10 @@ package onimko;
 
 import java.util.Collection;
 
+/**
+ * Interface for my Collections
+ * @param <E> the tip for data.
+ */
 public interface MyList<E> {
   int size();
   boolean isEmpty();
