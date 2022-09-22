@@ -8,7 +8,7 @@ import java.util.Collection;
  * This my own ArrayList
  * @param <E> - tip of data.
  */
-public class MyArrayList<E> implements MyList{
+public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
   private int size;
   private final static int startSize = 10;
   private E[] array;
@@ -65,37 +65,40 @@ public class MyArrayList<E> implements MyList{
     while ((index = indexOf(item)) > -1) remove(index);
   }
 
+  @Override
   public Object[] toArray() {
     Object[] arrayForReturn =  new Object[size];
     System.arraycopy(array,0,arrayForReturn,0, size);
     return arrayForReturn;
   }
 
+  @Override
   public E get(int index) {
     if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     return array[index];
   }
 
-
-  public void set(int index, E element) {
+  @Override
+  public void set(int index, Object element) {
      if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
-     array[index] = element;
+     array[index] = (E) element;
   }
 
+  @Override
   public void remove(int index) {
     if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     size--;
     for (int i = index; i < size; i++) array[i] = array[i+1];
   }
 
-
+  @Override
   public int indexOf(Object obj) {
     for (int i = 0; i < size; i++) if (obj.equals(array[i])) return i;
     return -1;
   }
 
-
-  public int lastIndexOf(E obj) {
+  @Override
+  public int lastIndexOf(Object obj) {
     for (int i = size - 1; i >= 0 ; i--) if (obj.equals(array[i])) return i;
     return -1;
   }

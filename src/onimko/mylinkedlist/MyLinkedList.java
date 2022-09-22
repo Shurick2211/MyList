@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * This my own LinkedList
  * @param <E> - tip of data.
  */
-public class MyLinkedList<E extends Object> implements MyList {
+public class MyLinkedList<E> implements MyList {
   private int size = 0;
   private Node<E> first;
   private Node<E> current;
@@ -68,6 +68,5 @@ public class MyLinkedList<E extends Object> implements MyList {
     public Node(E value) {
       this.value = value;
     }
-
   }
 }

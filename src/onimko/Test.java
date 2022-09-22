@@ -3,6 +3,7 @@ package onimko;
 import onimko.myarraylist.MyArrayList;
 
 import java.util.List;
+import onimko.mylinkedlist.MyLinkedList;
 
 public class Test {
   public static void main(String...args) {
@@ -10,13 +11,16 @@ public class Test {
     testLinkedList();
   }
 
-  private static boolean testLinkedList() {
-    return false;
+  private static void testLinkedList() {
+    MyLinkedList<Integer> test = new MyLinkedList<>();
+    System.out.println("Test for MyLinkedList:");
+    System.out.println("Add = " + addTest(test));
+
   }
 
   private static void testArrayList() {
     MyArrayList<Integer> test = new MyArrayList<>();
-    System.out.println("Test for MyArrayList");
+    System.out.println("Test for MyArrayList:");
     System.out.println("Add = " + addTest(test));
     System.out.println("Get = " + getTest(test));
     System.out.println("Set = " + setTest(test));
