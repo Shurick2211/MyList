@@ -18,6 +18,11 @@ public class MyArrayList<E> implements MyList{
     this.size = 0;
   }
 
+  public MyArrayList(Collection collection) {
+    this(collection.size() + startSize);
+    addAll(collection);
+  }
+
   @Override
   public int size() {
     return size;
@@ -45,11 +50,6 @@ public class MyArrayList<E> implements MyList{
   }
 
   @Override
-  public void addAll(Collection collection) {
-    collection.forEach(el -> add(el));
-  }
-
-  @Override
   public void clear() {
     array = (E[]) new Object[startSize];
     size = 0;
@@ -57,12 +57,8 @@ public class MyArrayList<E> implements MyList{
 
   @Override
   public void remove(Object item) {
-    remove(indexOf((E) item));
-  }
-
-  @Override
-  public void removeAll(Collection collection) {
-    collection.forEach(el -> remove(el));
+    int index;
+    while ((index = indexOf(item)) > -1) remove(index);
   }
 
   public Object[] toArray() {
@@ -89,7 +85,7 @@ public class MyArrayList<E> implements MyList{
   }
 
 
-  public int indexOf(E obj) {
+  public int indexOf(Object obj) {
     for (int i = 0; i < size; i++) if (obj.equals(array[i])) return i;
     return -1;
   }

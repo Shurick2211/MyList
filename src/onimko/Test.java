@@ -2,6 +2,8 @@ package onimko;
 
 import onimko.myarraylist.MyArrayList;
 
+import java.util.List;
+
 public class Test {
   public static void main(String...args) {
     testArrayList();
@@ -23,10 +25,16 @@ public class Test {
     System.out.println("Contains = " + containsTest(test));
     System.out.println("RemoveObj = " + removeObjTest(test));
     System.out.println("Clear = " + clearTest(test));
+    System.out.println("LastIndexOf = " + lastIndexOfTest());
     System.out.println("Empty = " + isEmptyTest(test));
     System.out.println("toArray = " + toArrayTest(test));
     System.out.println("toString = " +test);
     System.out.println("____________________________________");
+  }
+
+  private static boolean lastIndexOfTest() {
+    MyArrayList<Integer> test = new MyArrayList<>(List.of(1,5,6,9,5,4));
+    return test.lastIndexOf(5) == 4 && test.lastIndexOf(3) == -1;
   }
 
   private static boolean containsTest(MyList<Integer> test) {
@@ -45,7 +53,7 @@ public class Test {
   }
 
   private static boolean indexOfTest(MyArrayList<Integer> test) {
-    return test.indexOf(555) == 1;
+    return test.indexOf(10) == 5;
   }
 
   private static boolean clearTest(MyList<Object> test) {

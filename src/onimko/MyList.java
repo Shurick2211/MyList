@@ -7,8 +7,14 @@ public interface MyList<E> {
   boolean isEmpty();
   boolean contains(E el);
   void add(E item);
-  void addAll(Collection<E> c);
   void clear();
   void remove(E item);
-  void removeAll(Collection<E> c);
+
+  default void addAll(Collection collection) {
+    collection.forEach(el -> add((E) el));
+  }
+
+  default void removeAll(Collection collection) {
+    collection.forEach(el -> remove((E) el));
+  }
 }
