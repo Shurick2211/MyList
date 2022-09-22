@@ -30,6 +30,7 @@ public class MyArrayList<E> implements MyList{
 
   @Override
   public boolean contains(Object el) {
+    for (Object item:array) if (el.equals(item)) return true;
     return false;
   }
 
@@ -56,41 +57,47 @@ public class MyArrayList<E> implements MyList{
 
   @Override
   public void remove(Object item) {
-
+    remove(indexOf((E) item));
   }
 
   @Override
-  public void removeAll(Collection c) {
-
+  public void removeAll(Collection collection) {
+    collection.forEach(el -> remove(el));
   }
 
-  public E[] toArray() {
-    E[] arrayForReturn = (E[]) new Object[size];
+  public Object[] toArray() {
+    Object[] arrayForReturn =  new Object[size];
     System.arraycopy(array,0,arrayForReturn,0, size);
     return arrayForReturn;
   }
 
   public E get(int index) {
+    if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     return array[index];
   }
 
 
-  public Object set(int index, Object element) {
-    return array[index] = (E) element;
+  public void set(int index, E element) {
+     if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+     array[index] = element;
   }
 
-  public Object remove(int index) {
-    return null;
+  public void remove(int index) {
+    if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+    size--;
+    for (int i = index; i < size; i++) array[i] = array[i+1];
   }
 
 
-  public int indexOf(Object o) {
-    return 0;
+  public int indexOf(E obj) {
+    for (int i = 0; i < size; i++) if (obj.equals(array[i])) return i;
+    return -1;
   }
 
 
-  public int lastIndexOf(Object o) {
-    return 0;
+  public int lastIndexOf(E obj) {
+    for (int i = size - 1; i >= 0 ; i--) if (obj.equals(array[i])) return i;
+    return -1;
   }
 
   @Override
