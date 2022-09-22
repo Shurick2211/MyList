@@ -11,5 +11,4 @@ public interface InterfaceMyArrayList<E> {
   void remove(int index);
   int indexOf(Object obj);
   int lastIndexOf(E obj);
-
 }

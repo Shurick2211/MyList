@@ -1,7 +1,6 @@
 package onimko.myarraylist;
 
 import onimko.MyList;
-
 import java.util.Collection;
 
 /**

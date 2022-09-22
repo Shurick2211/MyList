@@ -1,5 +1,6 @@
 package onimko;
 
+import java.util.LinkedList;
 import onimko.myarraylist.MyArrayList;
 
 import java.util.List;
@@ -9,6 +10,7 @@ public class Test {
   public static void main(String...args) {
     testArrayList();
     testLinkedList();
+    LinkedList<Integer>f;
   }
 
   private static void testLinkedList() {
