@@ -2,13 +2,14 @@ package onimko.myarraylist;
 
 import onimko.MyList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 /**
  * This my own ArrayList
  * @param <E> - tip of data.
  */
-public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
+public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Iterable<E>{
   private int size;
   private final static int startSize = 10;
   private E[] array;
@@ -22,7 +23,7 @@ public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
     this.size = 0;
   }
 
-  public MyArrayList(Collection collection) {
+  public MyArrayList(Collection<E> collection) {
     this(collection.size() + startSize);
     addAll(collection);
   }
@@ -66,7 +67,23 @@ public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
   }
 
   @Override
-  public void forEach(Consumer consumer) {
+  public Iterator<E> iterator() {
+    return new Iterator<>() {
+      int i = 0;
+      @Override
+      public boolean hasNext() {
+        return i < size;
+      }
+
+      @Override
+      public E next() {
+        return array[i++];
+      }
+    };
+  }
+
+  @Override
+  public void forEach(Consumer<? super E> consumer) {
     for (int i = 0; i < size; i++) consumer.accept(array[i]);
   }
 
@@ -84,16 +101,16 @@ public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
   }
 
   @Override
-  public void set(int index, Object element) {
+  public void set(int index, E element) {
      if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
-     array[index] = (E) element;
+     array[index] = element;
   }
 
   @Override
   public void remove(int index) {
     if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     size--;
-    for (int i = index; i < size; i++) array[i] = array[i+1];
+    System.arraycopy(array, index + 1, array, index, size - index);
   }
 
   @Override
@@ -118,4 +135,5 @@ public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
     arrayString.append("]");
     return arrayString.toString();
   }
+
 }

@@ -2,14 +2,15 @@ package onimko.mylinkedlist;
 
 import onimko.MyList;
 
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 /**
  * This my own LinkedList
  * @param <E> - tip of data.
  */
-public class MyLinkedList<E> implements MyList {
+public class MyLinkedList<E> implements MyList, Iterable<E>{
   private int size = 0;
   private Node<E> first;
   private Node<E> current;
@@ -64,6 +65,37 @@ public class MyLinkedList<E> implements MyList {
       consumer.accept((E)node.value);
       node = node.next;
     }
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder listString = new StringBuilder("[");
+    AtomicInteger i = new AtomicInteger();
+    forEach(e -> {
+      listString.append(e);
+      if (i.get() < size-1) listString.append(", ");
+      i.getAndIncrement();
+    });
+    listString.append("]");
+    return listString.toString();
+  }
+
+  @Override
+  public Iterator<E> iterator() {
+    return new Iterator<E>() {
+      Node<E> node = first;
+      @Override
+      public boolean hasNext() {
+        return node.next != null;
+      }
+
+      @Override
+      public E next() {
+        E value = node.value;
+        node = node.next;
+        return value;
+      }
+    };
   }
 
   /**

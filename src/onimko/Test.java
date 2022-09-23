@@ -1,10 +1,9 @@
 package onimko;
 
-import java.util.LinkedList;
 import onimko.myarraylist.MyArrayList;
+import onimko.mylinkedlist.MyLinkedList;
 
 import java.util.List;
-import onimko.mylinkedlist.MyLinkedList;
 
 public class Test {
   public static void main(String...args) {
@@ -17,8 +16,8 @@ public class Test {
     MyLinkedList<Integer> test = new MyLinkedList<>();
     System.out.println("Test for MyLinkedList:");
     System.out.println("Add = " + addTest(test));
-    test.forEach(e -> System.out.println(e));
-
+    System.out.println("toString = " + test);
+    for (Integer i:test) System.out.println(i);
   }
 
   private static void testArrayList() {
@@ -35,7 +34,7 @@ public class Test {
     System.out.println("LastIndexOf = " + lastIndexOfTest());
     System.out.println("Empty = " + isEmptyTest(test));
     System.out.println("toArray = " + toArrayTest(test));
-    System.out.println("toString = " +test);
+    System.out.println("toString = " + test);
     System.out.println("____________________________________");
   }
 
@@ -48,7 +47,7 @@ public class Test {
     return test.contains(555) && !test.contains(345);
   }
 
-  private static boolean removeObjTest(MyList<Object> test) {
+  private static boolean removeObjTest(MyArrayList<Integer> test) {
     Integer obj = 555;
     test.remove(obj);
     return test.size() == 13 && !test.contains(obj);
@@ -63,7 +62,7 @@ public class Test {
     return test.indexOf(10) == 5;
   }
 
-  private static boolean clearTest(MyList<Object> test) {
+  private static boolean clearTest(MyArrayList<Integer> test) {
     test.clear();
     return test.size() == 0;
   }
@@ -86,12 +85,12 @@ public class Test {
     return false;
   }
 
-  private static boolean addTest(MyList<Object> test) {
+  private static boolean addTest(MyList<Integer> test) {
     for (int i = 0; i < 15; i++) test.add(i<<1);
     return test.size() == 15;
   }
 
-  private static boolean isEmptyTest(MyList<Object> test) {
+  private static boolean isEmptyTest(MyArrayList<Integer> test) {
     test.clear();
     boolean empty = test.isEmpty();
     test.add(1);

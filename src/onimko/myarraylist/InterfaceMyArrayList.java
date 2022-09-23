@@ -9,6 +9,6 @@ public interface InterfaceMyArrayList<E> {
   E get(int index);
   void set(int index, E element);
   void remove(int index);
-  int indexOf(Object obj);
+  int indexOf(E obj);
   int lastIndexOf(E obj);
 }
