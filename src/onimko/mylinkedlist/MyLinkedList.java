@@ -95,12 +95,12 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
   @Override
   public String toString() {
     StringBuilder listString = new StringBuilder("[");
-    AtomicInteger i = new AtomicInteger();
-    forEach(e -> {
+    int i = 0;
+    for (E e:this) {
       listString.append(e);
-      if (i.get() < size-1) listString.append(", ");
-      i.getAndIncrement();
-    });
+      if (i < size-1) listString.append(", ");
+      i++;
+    }
     listString.append("]");
     return listString.toString();
   }

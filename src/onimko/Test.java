@@ -3,12 +3,14 @@ package onimko;
 import onimko.myarraylist.MyArrayList;
 import onimko.mylinkedlist.MyLinkedList;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
   public static void main(String...args) {
     testArrayList();
     testLinkedList();
+    LinkedList<Integer>e;
   }
 
   private static void testLinkedList() {
