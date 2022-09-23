@@ -10,13 +10,14 @@ public class Test {
   public static void main(String...args) {
     testArrayList();
     testLinkedList();
-    LinkedList<Integer>f;
+
   }
 
   private static void testLinkedList() {
     MyLinkedList<Integer> test = new MyLinkedList<>();
     System.out.println("Test for MyLinkedList:");
     System.out.println("Add = " + addTest(test));
+    test.forEach(e -> System.out.println(e));
 
   }
 
@@ -96,7 +97,6 @@ public class Test {
     test.add(1);
     return empty && !test.isEmpty();
   }
-
 
 }
 

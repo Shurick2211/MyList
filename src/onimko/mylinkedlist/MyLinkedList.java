@@ -3,6 +3,7 @@ package onimko.mylinkedlist;
 import onimko.MyList;
 
 import java.util.LinkedList;
+import java.util.function.Consumer;
 
 /**
  * This my own LinkedList
@@ -54,6 +55,15 @@ public class MyLinkedList<E> implements MyList {
   @Override
   public void remove(Object item) {
 
+  }
+
+  @Override
+  public void forEach(Consumer consumer) {
+    Node node = first;
+    while (node != null) {
+      consumer.accept((E)node.value);
+      node = node.next;
+    }
   }
 
   /**

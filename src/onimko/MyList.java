@@ -1,6 +1,7 @@
 package onimko;
 
 import java.util.Collection;
+import java.util.function.Consumer;
 
 /**
  * Interface for my Collections
@@ -13,6 +14,7 @@ public interface MyList<E> {
   void add(E item);
   void clear();
   void remove(E item);
+  void forEach(Consumer<E> consumer);
 
   default void addAll(Collection collection) {
     collection.forEach(el -> add((E) el));

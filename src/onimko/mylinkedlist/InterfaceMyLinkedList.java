@@ -5,6 +5,6 @@ package onimko.mylinkedlist;
  * @param <E> - tip of data.
  */
 public interface InterfaceMyLinkedList<E> {
-  void forEach();
+
 
 }

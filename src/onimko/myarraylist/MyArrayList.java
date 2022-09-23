@@ -2,6 +2,7 @@ package onimko.myarraylist;
 
 import onimko.MyList;
 import java.util.Collection;
+import java.util.function.Consumer;
 
 /**
  * This my own ArrayList
@@ -62,6 +63,11 @@ public class MyArrayList<E> implements MyList, InterfaceMyArrayList{
   public void remove(Object item) {
     int index;
     while ((index = indexOf(item)) > -1) remove(index);
+  }
+
+  @Override
+  public void forEach(Consumer consumer) {
+    for (int i = 0; i < size; i++) consumer.accept(array[i]);
   }
 
   @Override
