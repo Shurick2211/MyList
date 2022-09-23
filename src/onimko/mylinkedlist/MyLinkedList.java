@@ -2,6 +2,7 @@ package onimko.mylinkedlist;
 
 import onimko.MyList;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -11,9 +12,17 @@ import java.util.function.Consumer;
  * @param <E> - tip of data.
  */
 public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Iterable<E>{
-  private int size = 0;
+  private int size;
   private Node<E> first;
   private Node<E> current;
+
+  public MyLinkedList() {
+    clear();
+  }
+
+  public MyLinkedList(Collection<E> col){
+    this.addAll(col);
+  }
 
   @Override
   public int size() {
@@ -63,12 +72,10 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
           node.prev.next = node.next;
           node.next.prev = node.prev;
         } else if (node.next == null) {
-          node.prev.next = null;
-          current = node.prev;
+          removeLast();
         }
         else {
-          node.next.prev = null;
-          first = node.next;
+          removeFirst();
         }
         size--;
       }
@@ -117,6 +124,44 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
     };
   }
 
+  @Override
+  public void addFirst(E el) {
+    first.prev = new Node<>(el);
+    first.prev.next = first;
+    first = first.prev;
+  }
+
+  @Override
+  public void addLast(E el) {
+    add(el);
+  }
+
+  @Override
+  public E removeFirst() {
+    E value = first.value;
+    first = first.next;
+    first.prev = null;
+    return value;
+  }
+
+  @Override
+  public E removeLast() {
+    E value = current.value;
+    current = current.prev;
+    current.next = null;
+    return value;
+  }
+
+  @Override
+  public E getFirst() {
+    return first.value;
+  }
+
+  @Override
+  public E getLast() {
+    return current.value;
+  }
+
   /**
    * The node for the MyLinkedList
    * @param <E> - the tip of data.
@@ -125,7 +170,6 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
     Node<E> prev;
     Node<E> next;
     E value;
-
     public Node(E value) {
       this.value = value;
     }
