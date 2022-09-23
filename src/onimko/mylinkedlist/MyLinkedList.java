@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * This my own LinkedList
  * @param <E> - tip of data.
  */
-public class MyLinkedList<E> implements MyList<E>, Iterable<E>{
+public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Iterable<E>{
   private int size = 0;
   private Node<E> first;
   private Node<E> current;
@@ -27,6 +27,7 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E>{
 
   @Override
   public boolean contains(E el) {
+    for (E e:this) if (e.equals(el)) return true;
     return false;
   }
 
@@ -54,8 +55,25 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E>{
   }
 
   @Override
-  public void remove(Object item) {
-
+  public void remove(E item) {
+    Node<E> node = first;
+    while (node != null) {
+      if (node.value.equals(item)) {
+        if (node.next != null && node.prev != null) {
+          node.prev.next = node.next;
+          node.next.prev = node.prev;
+        } else if (node.next == null) {
+          node.prev.next = null;
+          current = node.prev;
+        }
+        else {
+          node.next.prev = null;
+          first = node.next;
+        }
+        size--;
+      }
+      node = node.next;
+    }
   }
 
   @Override
@@ -87,7 +105,7 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E>{
 
       @Override
       public boolean hasNext() {
-        return node.next != null;
+        return node != null;
       }
 
       @Override

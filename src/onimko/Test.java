@@ -9,15 +9,15 @@ public class Test {
   public static void main(String...args) {
     testArrayList();
     testLinkedList();
-
   }
 
   private static void testLinkedList() {
     MyLinkedList<Integer> test = new MyLinkedList<>();
     System.out.println("Test for MyLinkedList:");
     System.out.println("Add = " + addTest(test));
+    System.out.println("Contains = " + containsTest(test));
+    System.out.println("Remove = " + removeObjTest(test));
     System.out.println("toString = " + test);
-    for (Integer i:test) System.out.println(i);
   }
 
   private static void testArrayList() {
@@ -44,13 +44,15 @@ public class Test {
   }
 
   private static boolean containsTest(MyList<Integer> test) {
+    test.add(555);
     return test.contains(555) && !test.contains(345);
   }
 
-  private static boolean removeObjTest(MyArrayList<Integer> test) {
+  private static boolean removeObjTest(MyList<Integer> test) {
+    int size = test.size();
     Integer obj = 555;
     test.remove(obj);
-    return test.size() == 13 && !test.contains(obj);
+    return test.size() == (size - 1) && !test.contains(obj);
   }
 
   private static boolean removeITest(MyArrayList<Integer> test) {
