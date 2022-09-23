@@ -5,7 +5,6 @@ package onimko.myarraylist;
  * @param <E> - tip of data.
  */
 public interface InterfaceMyArrayList<E> {
-  Object[] toArray();
   E get(int index);
   void set(int index, E element);
   void remove(int index);

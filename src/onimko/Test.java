@@ -3,14 +3,12 @@ package onimko;
 import onimko.myarraylist.MyArrayList;
 import onimko.mylinkedlist.MyLinkedList;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
   public static void main(String...args) {
     testArrayList();
     testLinkedList();
-    LinkedList<Integer>e;
   }
 
   private static void testLinkedList() {
@@ -19,7 +17,10 @@ public class Test {
     System.out.println("Add = " + addTest(test));
     System.out.println("Contains = " + containsTest(test));
     System.out.println("Remove = " + removeObjTest(test));
+    System.out.println("toArray = " + toArrayTest(test));
+    System.out.println("Stream API = " + streamTest(test));
     System.out.println("toString = " + test);
+    System.out.println("Empty = " + isEmptyTest(test));
   }
 
   private static void testArrayList() {
@@ -27,6 +28,7 @@ public class Test {
     System.out.println("Test for MyArrayList:");
     System.out.println("Add = " + addTest(test));
     System.out.println("Get = " + getTest(test));
+    System.out.println("Stream API = " + streamTest(test));
     System.out.println("Set = " + setTest(test));
     System.out.println("IndexOf = " + indexOfTest(test));
     System.out.println("Remove[i] = " + removeITest(test));
@@ -38,6 +40,10 @@ public class Test {
     System.out.println("toArray = " + toArrayTest(test));
     System.out.println("toString = " + test);
     System.out.println("____________________________________");
+  }
+
+  private static boolean streamTest(MyList<Integer> test) {
+    return test.stream().filter(e-> e < 10).reduce(Integer::sum).get() == 20;
   }
 
   private static boolean lastIndexOfTest() {
@@ -71,7 +77,7 @@ public class Test {
     return test.size() == 0;
   }
 
-  private static boolean toArrayTest(MyArrayList<Integer> test) {
+  private static boolean toArrayTest(MyList<Integer> test) {
     return test.toArray().getClass().equals(Object[].class);
   }
 
@@ -94,7 +100,7 @@ public class Test {
     return test.size() == 15;
   }
 
-  private static boolean isEmptyTest(MyArrayList<Integer> test) {
+  private static boolean isEmptyTest(MyList<Integer> test) {
     test.clear();
     boolean empty = test.isEmpty();
     test.add(1);

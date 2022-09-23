@@ -4,7 +4,6 @@ import onimko.MyList;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 /**
@@ -93,6 +92,14 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
   }
 
   @Override
+  public Object[] toArray() {
+    Object[] array = new Object[size];
+    int i = 0;
+    for (E el : this) array[i++] = el;
+    return array;
+  }
+
+  @Override
   public String toString() {
     StringBuilder listString = new StringBuilder("[");
     int i = 0;
@@ -166,7 +173,7 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
    * The node for the MyLinkedList
    * @param <E> - the tip of data.
    */
-  private static class Node<E> {
+  private class Node<E> {
     Node<E> prev;
     Node<E> next;
     E value;
