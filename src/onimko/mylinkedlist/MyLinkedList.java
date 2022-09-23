@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * This my own LinkedList
  * @param <E> - tip of data.
  */
-public class MyLinkedList<E> implements MyList, Iterable<E>{
+public class MyLinkedList<E> implements MyList<E>, Iterable<E>{
   private int size = 0;
   private Node<E> first;
   private Node<E> current;
@@ -26,19 +26,19 @@ public class MyLinkedList<E> implements MyList, Iterable<E>{
   }
 
   @Override
-  public boolean contains(Object el) {
+  public boolean contains(E el) {
     return false;
   }
 
   @Override
-  public void add(Object item) {
-    if (first == null) first = new Node<>((E) item);
+  public void add(E item) {
+    if (first == null) first = new Node<>(item);
     else if (current == null) {
-      first.next = new Node<>((E) item);
+      first.next = new Node<>(item);
       current = first.next;
       current.prev = first;
     } else {
-      current.next = new Node<>((E) item);
+      current.next = new Node<>(item);
       Node<E> old = current;
       current = current.next;
       current.prev = old;
@@ -59,10 +59,10 @@ public class MyLinkedList<E> implements MyList, Iterable<E>{
   }
 
   @Override
-  public void forEach(Consumer consumer) {
-    Node node = first;
+  public void forEach(Consumer<? super E> consumer) {
+    Node<E> node = first;
     while (node != null) {
-      consumer.accept((E)node.value);
+      consumer.accept(node.value);
       node = node.next;
     }
   }
@@ -82,8 +82,9 @@ public class MyLinkedList<E> implements MyList, Iterable<E>{
 
   @Override
   public Iterator<E> iterator() {
-    return new Iterator<E>() {
+    return new Iterator<>() {
       Node<E> node = first;
+
       @Override
       public boolean hasNext() {
         return node.next != null;
@@ -102,7 +103,7 @@ public class MyLinkedList<E> implements MyList, Iterable<E>{
    * The node for the MyLinkedList
    * @param <E> - the tip of data.
    */
-  private class Node<E> {
+  private static class Node<E> {
     Node<E> prev;
     Node<E> next;
     E value;

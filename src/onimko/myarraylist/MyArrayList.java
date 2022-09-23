@@ -39,19 +39,19 @@ public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Itera
   }
 
   @Override
-  public boolean contains(Object el) {
+  public boolean contains(E el) {
     for (Object item:array) if (el.equals(item)) return true;
     return false;
   }
 
   @Override
-  public void add(Object item) {
+  public void add(E item) {
     if (array.length == size) {
       E[] bigger = (E[]) new Object[array.length<<1];
       System.arraycopy(array,0,bigger,0, array.length);
       array = bigger;
     }
-    array[size++] = (E) item;
+    array[size++] =  item;
   }
 
   @Override
