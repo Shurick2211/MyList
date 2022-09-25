@@ -3,6 +3,8 @@ package onimko;
 import onimko.myarraylist.MyArrayList;
 import onimko.mylinkedlist.MyLinkedList;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,8 +24,21 @@ public class Test {
     System.out.println("Remove = " + removeObjTest(test));
     System.out.println("toArray = " + toArrayTest(test));
     System.out.println("Stream API = " + streamTest(test));
+    System.out.println("Add & get first/last = " + addAndGetFirstAndLast());
+    System.out.println("forEach = " + forEachTest(test));
     System.out.println("toString = " + test);
     System.out.println("Empty = " + isEmptyTest(test));
+    System.out.println("RemoveAll = " + removeAllTest(test));
+    System.out.println("____________________________________");
+  }
+
+  private static boolean addAndGetFirstAndLast() {
+    Integer first = 15;
+    Integer last = 25;
+    MyLinkedList<Integer> test = new MyLinkedList<>(List.of(1,2,3,4,5));
+    test.addFirst(first);
+    test.addLast(last);
+    return test.getFirst().equals(first) &&  test.getLast().equals(last);
   }
 
   private static void testArrayList() {
@@ -41,7 +56,9 @@ public class Test {
     System.out.println("LastIndexOf = " + lastIndexOfTest());
     System.out.println("Empty = " + isEmptyTest(test));
     System.out.println("toArray = " + toArrayTest(test));
+    System.out.println("forEach = " + forEachTest(test));
     System.out.println("toString = " + test);
+    System.out.println("RemoveAll = " + removeAllTest(test));
     System.out.println("____________________________________");
   }
 
@@ -60,10 +77,12 @@ public class Test {
   }
 
   private static boolean removeObjTest(MyList<Integer> test) {
+    Integer obj = 3456;
     int size = test.size();
-    Integer obj = 555;
+    test.add(obj);
+    boolean contains = test.contains(obj);
     test.remove(obj);
-    return test.size() == (size - 1) && !test.contains(obj);
+    return test.size() == size && contains && !test.contains(obj);
   }
 
   private static boolean removeITest(MyArrayList<Integer> test) {
@@ -110,5 +129,20 @@ public class Test {
     return empty && !test.isEmpty();
   }
 
-}
+  private static boolean forEachTest(MyList<Integer> test) {
+    test.clear();
+    addTest(test);
+    ArrayList<Integer> col = new ArrayList<>();
+    test.forEach(i -> col.add(i));
+    return Arrays.equals(test.toArray(), col.toArray());
+  }
 
+  private static boolean removeAllTest(MyList<Integer> test) {
+    test.clear();
+    List<Integer> rem = List.of(1,5,8);
+    test.addAll(rem);
+    boolean noEmpty = !test.isEmpty();
+    test.removeAll(rem);
+    return test.isEmpty() && noEmpty;
+  }
+}

@@ -72,7 +72,7 @@ public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Itera
    */
   @Override
   public boolean contains(E el) {
-    for (Object item:array) if (el.equals(item)) return true;
+    for (E item:this) if (el.equals(item)) return true;
     return false;
   }
 
@@ -106,7 +106,9 @@ public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Itera
   @Override
   public void remove(E item) {
     int index;
-    while ((index = indexOf(item)) > -1) remove(index);
+    while ((index = indexOf(item)) > -1) {
+      remove(index);
+    }
   }
 
   /**

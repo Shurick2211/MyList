@@ -20,7 +20,7 @@ public interface MyList<E> {
   Object[] toArray();
 
   /**
-   * Method gives opportunity to use the MyList for Stream API.
+   * Method gives ability to use the MyList for Stream API.
    * @return Stream<E> for use.
    */
   default Stream<E> stream() { return (Stream<E>) Arrays.stream(this.toArray()); }

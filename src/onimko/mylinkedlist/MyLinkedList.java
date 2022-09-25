@@ -107,13 +107,13 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
         if (node.next != null && node.prev != null) {
           node.prev.next = node.next;
           node.next.prev = node.prev;
+          size--;
         } else if (node.next == null) {
           removeLast();
         }
         else {
           removeFirst();
         }
-        size--;
       }
       node = node.next;
     }
@@ -225,6 +225,7 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
     E value = first.value;
     first = first.next;
     first.prev = null;
+    size--;
     return value;
   }
 
@@ -235,8 +236,11 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
   @Override
   public E removeLast() {
     E value = current.value;
-    current = current.prev;
-    current.next = null;
+    if (current.prev != null) {
+      current = current.prev;
+      current.next = null;
+      size--;
+    } else clear();
     return value;
   }
 

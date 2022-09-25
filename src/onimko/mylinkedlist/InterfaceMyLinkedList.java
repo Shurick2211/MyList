@@ -1,7 +1,5 @@
 package onimko.mylinkedlist;
 
-import java.util.Deque;
-
 /**
  * The interface for my own LinkedList
  * @param <E> - tip of data.
