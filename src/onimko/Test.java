@@ -5,6 +5,9 @@ import onimko.mylinkedlist.MyLinkedList;
 
 import java.util.List;
 
+/**
+ * The test class for my collections.
+ */
 public class Test {
   public static void main(String...args) {
     testArrayList();
