@@ -59,7 +59,21 @@ public class Test {
     System.out.println("forEach = " + forEachTest(test));
     System.out.println("toString = " + test);
     System.out.println("RemoveAll = " + removeAllTest(test));
+    System.out.println("IndexOfBounds = " + indexOfBoundsTest(test));
     System.out.println("____________________________________");
+  }
+
+  private static boolean indexOfBoundsTest(MyArrayList<Integer> test) {
+    test.clear();
+    test.add(1);
+    boolean first = false;
+    try {
+      if (test.get(0) == 1) first = true;
+      test.get(1);
+    } catch (IndexOutOfBoundsException e) {
+      return first;
+    }
+    return false;
   }
 
   private static boolean streamTest(MyList<Integer> test) {

@@ -1,4 +1,4 @@
-The answer for question about Stack and Queue.
+This is answer for question about Stack and Queue.
 1. For Stack I used MyArrayList with big "capacity" (for save time when expanding an array),
    because add/remove last element more quickly then it are operations for MyLinkedLinked
    (where time spends for creates object Node).
