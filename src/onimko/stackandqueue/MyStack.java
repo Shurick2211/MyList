@@ -8,7 +8,7 @@ import onimko.myarraylist.MyArrayList;
  */
 public class MyStack<E> implements InterfaceMyStack<E>{
 
-    private final MyArrayList<E> stack = new MyArrayList<>();
+    private final MyArrayList<E> stack = new MyArrayList<>(5000);
 
     @Override
     public void push(E item) {

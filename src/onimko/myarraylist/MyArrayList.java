@@ -194,7 +194,7 @@ public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Itera
   public void remove(int index) {
     if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     size--;
-    System.arraycopy(array, index + 1, array, index, size - index);
+    if (size > index) System.arraycopy(array, index + 1, array, index, size - index);
   }
 
   /**

@@ -1,1 +1,7 @@
-The answer for equation about Stack and Queue.
+The answer for question about Stack and Queue.
+1. For Stack I used MyArrayList with big "capacity" (for save time when expanding an array),
+   because add/remove last element more quickly then it are operations for MyLinkedLinked
+   (where time spends for creates object Node).
+2. For Queue I used MyLikedList, because add/remove first element more quickly then it are
+   operations for MyArrayList. Time for creates object Node less than time spends for copy
+   array, especially if the size of it is large.
