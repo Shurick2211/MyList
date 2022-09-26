@@ -42,7 +42,7 @@ public class MyArrayList<E> implements MyList<E>, InterfaceMyArrayList<E>, Itera
    * The constructor for create MyArrayList with input collection.
    * @param collection - the input collection.
    */
-  public MyArrayList(Collection<E> collection) {
+  public MyArrayList(Collection<? extends E> collection) {
     this(collection.size() + startSize);
     addAll(collection);
   }

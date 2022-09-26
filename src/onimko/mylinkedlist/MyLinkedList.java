@@ -32,7 +32,7 @@ public class MyLinkedList<E> implements MyList<E>, InterfaceMyLinkedList<E>, Ite
    * The constructor for create MyLinkedList with input collection.
    * @param col - the input collection.
    */
-  public MyLinkedList(Collection<E> col){
+  public MyLinkedList(Collection<? extends E> col){
     this.addAll(col);
   }
 
